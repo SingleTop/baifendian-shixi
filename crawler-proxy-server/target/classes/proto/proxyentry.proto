@@ -1,0 +1,34 @@
+syntax = "proto3";
+package proxy_server;
+option java_package = "com.bfm.mf.crawler.proxyserver";
+option java_outer_classname = "ProxyServerProto";
+option java_multiple_files = true;
+
+service requestProxy{
+rpc crawl(CrawlRequest) returns (CrawlResponse){}
+rpc isHasResource(ask) returns (reply){}
+}
+//请求参数
+message CrawlRequest {
+    string url = 1;
+    string ip = 2;
+    string port = 3;
+    string header = 4;
+}
+//返回参数
+message CrawlResponse{
+     string html = 1;
+     string charset = 2;
+     sfixed32 httpCode =3;
+     string url =4;
+
+}
+//询问是否有资源
+message ask{
+    string askMessage = 1;
+}
+//回答有，或者没有
+message reply{
+    string replyMessage = 1;
+}
+
